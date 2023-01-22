@@ -1,6 +1,6 @@
-import './App.css';
+import './tailwind.css';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import logo from './logo.svg';
 
@@ -8,27 +8,36 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p className="header">
+    <div className="text-center">
+      <header className="bg-slate-300 h-screen flex flex-col items-center justify-center">
+        <img
+          src={logo}
+          className="h-[40vmin] pointer-events-none animate-spin-slow"
+          alt="logo"
+        />
+        <h1 className="text-3xl font-bold text-blue-600">
           🚀 Vite + React + Typescript 🤘 & <br />
           Eslint 🔥+ Prettier
-        </p>
+        </h1>
 
-        <div className="body">
-          <button onClick={() => setCount((count) => count + 1)}>
+        <div className="text-md mt-5 mx-3">
+          <button
+            className="bg-blue-300 px-3 py-2 border-2 rounded-lg border-blue-400 "
+            onClick={() => setCount((count) => count + 1)}
+          >
             🪂 Click me : {count}
           </button>
 
-          <p> Don&apos;t forgot to install Eslint and Prettier in Your Vscode.</p>
+          <p className="mt-3">
+            Don&apos;t forget to install Eslint and Prettier in Your Vscode.
+          </p>
 
           <p>
             Mess up the code in <code>App.tsx </code> and save the file.
           </p>
           <p>
             <a
-              className="App-link"
+              className="text-cyan-600 font-semibold underline"
               href="https://reactjs.org"
               target="_blank"
               rel="noopener noreferrer"
@@ -37,7 +46,7 @@ function App() {
             </a>
             {' | '}
             <a
-              className="App-link"
+              className="text-cyan-600 font-semibold underline"
               href="https://vitejs.dev/guide/features.html"
               target="_blank"
               rel="noopener noreferrer"
