@@ -7,6 +7,11 @@ module.exports = {
       animation: {
         'spin-slow': 'spin 20s linear infinite',
       },
+      fontFamily: {
+        sans: ['Inter', 'system-ui'],
+        serif: ['Lora', 'system-ui'],
+        mono: ['Inconsolata', 'system-ui'],
+      },
     },
   },
   plugins: [],
