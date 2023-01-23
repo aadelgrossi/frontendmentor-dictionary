@@ -1,6 +1,8 @@
+import { InputHTMLAttributes } from 'react';
+
 import search from '../assets/icon-search.svg';
 
-const SearchInput = () => {
+const SearchInput = (props: InputHTMLAttributes<HTMLInputElement>) => {
   return (
     <div className="relative">
       <input
@@ -10,6 +12,7 @@ const SearchInput = () => {
         font-bold text-md md:text-lg
         focus:outline-none focus:ring-1 focus:ring-primary"
         placeholder="Search for any word..."
+        {...props}
       />
       <img alt="search-icon" className="absolute top-6 right-5" src={search} />
     </div>
