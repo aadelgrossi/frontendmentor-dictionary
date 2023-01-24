@@ -1,10 +1,14 @@
-import { InputHTMLAttributes } from 'react';
+import { FormEventHandler, InputHTMLAttributes } from 'react';
 
 import search from '../assets/icon-search.svg';
 
-const SearchInput = (props: InputHTMLAttributes<HTMLInputElement>) => {
+interface SearchInputProps extends InputHTMLAttributes<HTMLInputElement> {
+  onSubmit?: FormEventHandler;
+}
+const SearchInput = (props: SearchInputProps) => {
+  const { onSubmit, ...rest } = props;
   return (
-    <div className="relative">
+    <form onSubmit={onSubmit} className="relative">
       <input
         className="w-full rounded-xl h-16
         py-5 px-4
@@ -12,10 +16,12 @@ const SearchInput = (props: InputHTMLAttributes<HTMLInputElement>) => {
         font-bold text-md md:text-lg
         focus:outline-none focus:ring-1 focus:ring-primary"
         placeholder="Search for any word..."
-        {...props}
+        {...rest}
       />
-      <img alt="search-icon" className="absolute top-6 right-5" src={search} />
-    </div>
+      <button type="submit">
+        <img alt="search-icon" className="absolute top-6 right-5" src={search} />
+      </button>
+    </form>
   );
 };
 
