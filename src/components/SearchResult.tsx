@@ -1,10 +1,11 @@
-import { ReactNode } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 import link from '../assets/icon-new-window.svg';
 import play from '../assets/icon-play.svg';
 import { DictionaryEntry } from '../services/useDictionarySearch';
 
 interface SearchResultProps {
+  setWord: Dispatch<SetStateAction<string>>;
   result: DictionaryEntry;
 }
 
@@ -17,7 +18,8 @@ const SectionTitle = ({ children }: { children: ReactNode }) => {
   );
 };
 
-const SearchResult = ({ result }: SearchResultProps) => {
+const SearchResult = (props: SearchResultProps) => {
+  const { result, setWord } = props;
   const { word, phonetic, meanings, sourceUrls } = result;
 
   return (
@@ -64,12 +66,13 @@ const SearchResult = ({ result }: SearchResultProps) => {
                 <div className="flex flex-row gap-2 flex-wrap">
                   {synonyms.map((synonym, idx) => {
                     return (
-                      <a
+                      <button
+                        onClick={() => setWord(synonym)}
                         key={idx}
                         className="font-semibold text-primary hover:underline cursor-pointer"
                       >
                         {synonym}
-                      </a>
+                      </button>
                     );
                   })}
                 </div>
