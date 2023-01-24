@@ -2,15 +2,18 @@ import { FormEventHandler, useEffect, useState } from 'react';
 
 import moon from './assets/icon-moon.svg';
 import logo from './assets/logo.svg';
+import SearchError from './components/SearchError';
 import SearchInput from './components/SearchInput';
 import SearchResult from './components/SearchResult';
-import useDictionarySearch from './services/useDictionarySearch';
+import useDictionarySearch, {
+  DictionarySearchError,
+} from './services/useDictionarySearch';
 
 const App = () => {
   const [inputValue, setInputValue] = useState('keyboard');
   const [word, setWord] = useState(inputValue);
 
-  const { data } = useDictionarySearch(word);
+  const { data, error, isError } = useDictionarySearch(word);
 
   const onSubmit: FormEventHandler = (e) => {
     e.preventDefault();
@@ -37,7 +40,7 @@ const App = () => {
           onChange={(e) => setInputValue(e.target.value)}
         />
 
-        {data?.map((result, idx) => {
+        {data?.data.map((result, idx) => {
           return (
             <SearchResult
               setWord={setWord}
@@ -46,6 +49,8 @@ const App = () => {
             />
           );
         })}
+
+        {isError && <SearchError error={error.response?.data} />}
       </div>
     </div>
   );

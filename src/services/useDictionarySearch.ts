@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useQuery } from 'react-query';
 
 export interface DictionaryEntry {
@@ -20,23 +21,31 @@ export interface DictionaryEntry {
   sourceUrls: string[];
 }
 
-interface DictionarySearchError {
+export interface DictionarySearchError {
   title: string;
   message: string;
   resolution: string;
 }
 
+type CustomError = {
+  response?: {
+    data?: DictionarySearchError;
+  };
+};
+
 const useDictionarySearch = (word?: string) => {
-  const useQueryReturn = useQuery<DictionaryEntry[], DictionarySearchError>({
+  const useQueryReturn = useQuery({
     queryKey: ['dictionary', word],
+    retry: false,
     queryFn: async () => {
-      return fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`).then(
-        (res) => res.json(),
+      return axios.get<DictionaryEntry[]>(
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`,
       );
     },
   });
+  const error = useQueryReturn.error as CustomError;
 
-  return useQueryReturn;
+  return { ...useQueryReturn, error };
 };
 
 export default useDictionarySearch;
