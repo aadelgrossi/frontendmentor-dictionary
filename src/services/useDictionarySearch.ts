@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 
-interface DictionaryEntry {
+export interface DictionaryEntry {
   word: string;
   phonetic: string;
   phonetics: Array<{
@@ -13,10 +13,11 @@ interface DictionaryEntry {
     definitions: Array<{
       definition: string;
       example: string;
-      synonyms: string[];
-      antonyms: string[];
     }>;
+    synonyms: string[];
+    antonyms: string[];
   }>;
+  sourceUrls: string[];
 }
 
 interface DictionarySearchError {
