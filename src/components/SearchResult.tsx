@@ -35,7 +35,7 @@ const SearchResult = (props: SearchResultProps) => {
       </div>
 
       {meanings.map((meaning) => {
-        const { partOfSpeech, definitions, synonyms } = meaning;
+        const { partOfSpeech, definitions, synonyms, antonyms } = meaning;
         return (
           <div id={`meaning-${partOfSpeech}`} className="mt-8" key={partOfSpeech}>
             <SectionTitle>{meaning.partOfSpeech}</SectionTitle>
@@ -60,7 +60,7 @@ const SearchResult = (props: SearchResultProps) => {
             })}
 
             {synonyms.length > 0 && (
-              <div className="flex flex-row">
+              <div className="flex flex-row mb-3">
                 <p className="text-gray-500 mr-6">Synonyms</p>
 
                 <div className="flex flex-row gap-2 flex-wrap">
@@ -72,6 +72,25 @@ const SearchResult = (props: SearchResultProps) => {
                         className="font-semibold text-primary hover:underline cursor-pointer"
                       >
                         {synonym}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+            {antonyms.length > 0 && (
+              <div className="flex flex-row">
+                <p className="text-gray-500 mr-6">Antonyms</p>
+
+                <div className="flex flex-row gap-2 flex-wrap">
+                  {antonyms.map((antonyms, idx) => {
+                    return (
+                      <button
+                        onClick={() => setWord(antonyms)}
+                        key={idx}
+                        className="font-semibold text-primary hover:underline cursor-pointer"
+                      >
+                        {antonyms}
                       </button>
                     );
                   })}
