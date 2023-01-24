@@ -6,7 +6,7 @@ module.exports = {
     extend: {
       colors: {
         primary: '#A445ED',
-        secondary: '#FF5252',
+        error: '#FF5252',
         text: {
           100: '#3A3A3A',
           200: '#2D2D2D',
@@ -14,7 +14,6 @@ module.exports = {
           500: '#050505',
         },
         accent: {
-          100: '#ffffff',
           200: '#F4F4F4',
           400: '#E9E9E9',
           500: '#757575',
