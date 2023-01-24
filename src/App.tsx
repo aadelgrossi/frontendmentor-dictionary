@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FormEventHandler, useEffect, useState } from 'react';
 
 import moon from './assets/icon-moon.svg';
 import logo from './assets/logo.svg';
@@ -7,9 +7,19 @@ import SearchResult from './components/SearchResult';
 import useDictionarySearch from './services/useDictionarySearch';
 
 const App = () => {
-  const [word, setWord] = useState('keyboard');
+  const [inputValue, setInputValue] = useState('keyboard');
+  const [word, setWord] = useState(inputValue);
 
   const { data } = useDictionarySearch(word);
+
+  const onSubmit: FormEventHandler = (e) => {
+    e.preventDefault();
+    setWord(inputValue);
+  };
+
+  useEffect(() => {
+    setInputValue(word);
+  }, [word]);
 
   return (
     <div
@@ -21,10 +31,20 @@ const App = () => {
           <img src={logo} alt="logo" />
           <img src={moon} alt="theme" />
         </header>
-        <SearchInput value={word} onChange={(e) => setWord(e.target.value)} />
+        <SearchInput
+          onSubmit={onSubmit}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
 
-        {data?.map((result) => {
-          return <SearchResult key={result.word} result={result} />;
+        {data?.map((result, idx) => {
+          return (
+            <SearchResult
+              setWord={setWord}
+              key={`${result.word}-${idx}`}
+              result={result}
+            />
+          );
         })}
       </div>
     </div>
