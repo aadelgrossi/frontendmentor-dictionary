@@ -9,11 +9,11 @@ const SearchError = (props: SearchErrorProps) => {
   const { title, message, resolution } = props.error;
 
   return (
-    <div className="flex flex-col w-full justify-center items-center mt-32">
+    <div className="flex flex-col w-full justify-center items-center mt-32 text-center leading-7">
       <p className="text-6xl">😕</p>
-      <h2 className="font-bold text-2xl mt-10">{title}</h2>
-      <p className="text-gray-500 text-[18px] mt-6">{message}</p>
-      <p className="text-gray-500 text-[18px]">{resolution}</p>
+      <h2 className="font-bold text-2xl md:text-3xl mt-10">{title}</h2>
+      <p className="text-accent-500 text-md md:text-[18px] mt-6">{message}</p>
+      <p className="text-accent-500 text-md md:text-[18px]">{resolution}</p>
     </div>
   );
 };

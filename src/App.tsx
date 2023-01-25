@@ -1,7 +1,6 @@
 import { FormEventHandler, useEffect, useState } from 'react';
 
-import moon from './assets/icon-moon.svg';
-import logo from './assets/logo.svg';
+import Header from './components/Header';
 import SearchError from './components/SearchError';
 import SearchInput from './components/SearchInput';
 import SearchResult from './components/SearchResult';
@@ -26,14 +25,12 @@ const App = () => {
 
   return (
     <div
-      className="flex flex-col items-center mx-6
-      bg-white text-text-200"
+      className="flex w-screen h-screen flex-col items-center
+      bg-white text-text-200
+      dark:bg-black dark:text-gray-300"
     >
-      <div className="max-w-3xl mt-10 w-full">
-        <header className="flex flex-row items-center justify-between mb-14">
-          <img src={logo} alt="logo" />
-          <img src={moon} alt="theme" />
-        </header>
+      <div className="max-w-3xl px-6 mt-10 w-full">
+        <Header />
         <SearchInput
           onSubmit={onSubmit}
           value={inputValue}

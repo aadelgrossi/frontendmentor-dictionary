@@ -39,7 +39,7 @@ const SearchResult = (props: SearchResultProps) => {
         return (
           <div id={`meaning-${partOfSpeech}`} className="mt-8" key={partOfSpeech}>
             <SectionTitle>{meaning.partOfSpeech}</SectionTitle>
-            <p className="text-gray-500 mt-6 mb-4">Meaning</p>
+            <p className="text-accent-500 mt-6 mb-4">Meaning</p>
 
             {definitions.map((definition, idx) => {
               return (
@@ -61,7 +61,7 @@ const SearchResult = (props: SearchResultProps) => {
 
             {synonyms.length > 0 && (
               <div className="flex flex-row mb-3">
-                <p className="text-gray-500 mr-6">Synonyms</p>
+                <p className="text-accent-500 mr-6">Synonyms</p>
 
                 <div className="flex flex-row gap-2 flex-wrap">
                   {synonyms.map((synonym, idx) => {
@@ -80,7 +80,7 @@ const SearchResult = (props: SearchResultProps) => {
             )}
             {antonyms.length > 0 && (
               <div className="flex flex-row">
-                <p className="text-gray-500 mr-6">Antonyms</p>
+                <p className="text-accent-500 mr-6">Antonyms</p>
 
                 <div className="flex flex-row gap-2 flex-wrap">
                   {antonyms.map((antonyms, idx) => {
