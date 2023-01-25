@@ -7,8 +7,11 @@ import SearchResult from './components/SearchResult';
 import useDictionarySearch, {
   DictionarySearchError,
 } from './services/useDictionarySearch';
+import useUserPreferenceStore from './store';
 
 const App = () => {
+  const font = useUserPreferenceStore((state) => state.font);
+
   const [inputValue, setInputValue] = useState('keyboard');
   const [word, setWord] = useState(inputValue);
 
@@ -25,29 +28,31 @@ const App = () => {
 
   return (
     <div
-      className="flex w-screen h-screen flex-col items-center
+      className="flex min-h-screen pb-12 flex-col items-center
       bg-white text-text-200
       dark:bg-black dark:text-gray-300"
     >
       <div className="max-w-3xl px-6 mt-10 w-full">
         <Header />
-        <SearchInput
-          onSubmit={onSubmit}
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
+        <div className={`font-${font}`}>
+          <SearchInput
+            onSubmit={onSubmit}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+          />
 
-        {data?.data.map((result, idx) => {
-          return (
-            <SearchResult
-              setWord={setWord}
-              key={`${result.word}-${idx}`}
-              result={result}
-            />
-          );
-        })}
+          {data?.data.map((result, idx) => {
+            return (
+              <SearchResult
+                setWord={setWord}
+                key={`${result.word}-${idx}`}
+                result={result}
+              />
+            );
+          })}
 
-        {isError && <SearchError error={error.response?.data} />}
+          {isError && <SearchError error={error.response?.data} />}
+        </div>
       </div>
     </div>
   );

@@ -51,7 +51,7 @@ const SearchResult = (props: SearchResultProps) => {
                   </ul>
 
                   {definition.example && (
-                    <p className="ml-5 text-accent-500">
+                    <p className="ml-4 -mt-2 mb-3 text-accent-500">
                       &quot;{definition.example}&quot;
                     </p>
                   )}
