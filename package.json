@@ -11,9 +11,6 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@fontsource/inconsolata": "^4.5.10",
-    "@fontsource/inter": "^4.5.15",
-    "@fontsource/lora": "^4.5.13",
     "@headlessui/react": "^1.7.7",
     "axios": "^1.2.3",
     "clsx": "^1.2.1",

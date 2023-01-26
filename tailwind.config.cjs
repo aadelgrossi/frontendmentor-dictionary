@@ -20,8 +20,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui'],
-        serif: ['Lora', 'system-ui'],
+        sans: ['Inter', 'sans-serif', 'system-ui'],
+        serif: ['Lora', 'serif', 'system-ui'],
         mono: ['Inconsolata', 'monospace'],
       },
     },
