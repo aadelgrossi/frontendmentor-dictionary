@@ -8,6 +8,7 @@ import Play from '../icons/Play';
 const PlayButton = (props: PlayButtonProps) => {
   const player = new Audio(props.src);
 
+  if (!props.src) return null;
   return (
     <>
       <audio src={props.src} />
