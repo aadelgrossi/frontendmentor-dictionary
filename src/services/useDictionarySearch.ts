@@ -37,6 +37,7 @@ const useDictionarySearch = (word?: string) => {
   const useQueryReturn = useQuery({
     queryKey: ['dictionary', word],
     retry: false,
+    enabled: !!word,
     queryFn: async () => {
       return axios.get<DictionaryEntry[]>(
         `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`,

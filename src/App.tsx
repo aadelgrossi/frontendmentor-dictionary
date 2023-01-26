@@ -1,4 +1,4 @@
-import { FormEventHandler, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Header from './components/Header';
 import SearchError from './components/SearchError';
@@ -10,14 +10,16 @@ import useUserPreferenceStore from './store';
 const App = () => {
   const font = useUserPreferenceStore((state) => state.font);
 
-  const [inputValue, setInputValue] = useState('keyboard');
+  const [inputValue, setInputValue] = useState('');
   const [word, setWord] = useState(inputValue);
 
-  const { data, error, isError } = useDictionarySearch(word);
+  const { data, error, isError, isIdle } = useDictionarySearch(word);
 
   useEffect(() => {
     setInputValue(word);
   }, [word]);
+
+  const hasError = isError && !isIdle;
 
   return (
     <div
@@ -44,7 +46,7 @@ const App = () => {
             );
           })}
 
-          {isError && <SearchError error={error.response?.data} />}
+          {hasError && <SearchError error={error.response?.data} />}
         </div>
       </div>
     </div>
