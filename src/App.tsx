@@ -4,9 +4,7 @@ import Header from './components/Header';
 import SearchError from './components/SearchError';
 import SearchInput from './components/SearchInput';
 import SearchResult from './components/SearchResult';
-import useDictionarySearch, {
-  DictionarySearchError,
-} from './services/useDictionarySearch';
+import useDictionarySearch from './services/useDictionarySearch';
 import useUserPreferenceStore from './store';
 
 const App = () => {
@@ -16,11 +14,6 @@ const App = () => {
   const [word, setWord] = useState(inputValue);
 
   const { data, error, isError } = useDictionarySearch(word);
-
-  const onSubmit: FormEventHandler = (e) => {
-    e.preventDefault();
-    setWord(inputValue);
-  };
 
   useEffect(() => {
     setInputValue(word);
@@ -36,7 +29,7 @@ const App = () => {
         <Header />
         <div className={`font-${font}`}>
           <SearchInput
-            onSubmit={onSubmit}
+            setWord={setWord}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
