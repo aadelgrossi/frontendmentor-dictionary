@@ -2,7 +2,7 @@ import { Switch } from '@headlessui/react';
 import clsx from 'clsx';
 import { useEffect } from 'react';
 
-import moon from '../assets/icon-moon.svg';
+import Moon from '../icons/Moon';
 import useUserPreferenceStore from '../store';
 
 const ThemeToggle = () => {
@@ -42,7 +42,11 @@ const ThemeToggle = () => {
           })}
         />
       </Switch>
-      <img src={moon} alt="theme" />
+      <Moon
+        className={clsx({
+          '[&>path]:stroke-primary': checked,
+        })}
+      />
     </div>
   );
 };

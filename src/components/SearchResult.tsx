@@ -3,6 +3,7 @@ import { Dispatch, ReactNode, SetStateAction } from 'react';
 import link from '../assets/icon-new-window.svg';
 import play from '../assets/icon-play.svg';
 import { DictionaryEntry } from '../services/useDictionarySearch';
+import PlayButton from './PlayButton';
 
 interface SearchResultProps {
   setWord: Dispatch<SetStateAction<string>>;
@@ -20,18 +21,18 @@ const SectionTitle = ({ children }: { children: ReactNode }) => {
 
 const SearchResult = (props: SearchResultProps) => {
   const { result, setWord } = props;
-  const { word, phonetic, meanings, sourceUrls } = result;
+  const { word, meanings, sourceUrls, phonetics } = result;
+
+  const phonetic = phonetics.find((item) => item.audio);
 
   return (
     <div id="container" className="mt-6 flex flex-col">
       <div id="word" className="flex flex-row justify-between">
         <div>
           <h1 className="font-bold text-[32px]">{word}</h1>
-          <p className="text-primary text-md">{phonetic}</p>
+          <p className="text-primary text-md">{phonetic?.text}</p>
         </div>
-        <button aria-label="play-phonetic" aria-roledescription="Play phonetic">
-          <img alt="play-phonetic" src={play} />
-        </button>
+        <PlayButton src={phonetic?.audio} />
       </div>
 
       {meanings.map((meaning) => {
