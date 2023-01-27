@@ -1,9 +1,9 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 import link from '../assets/icon-new-window.svg';
-import play from '../assets/icon-play.svg';
 import { DictionaryEntry } from '../services/useDictionarySearch';
 import PlayButton from './PlayButton';
+import RelatedWords from './RelatedWords';
 
 interface SearchResultProps {
   setWord: Dispatch<SetStateAction<string>>;
@@ -13,7 +13,7 @@ interface SearchResultProps {
 const SectionTitle = ({ children }: { children: ReactNode }) => {
   return (
     <div className="flex flex-row items-center gap-3">
-      <span className="italic font-bold text-md">{children}</span>
+      <span className="italic font-bold text-[16px] md:text-[20px]">{children}</span>
       <hr className="w-full divide-zinc-800" />
     </div>
   );
@@ -29,7 +29,7 @@ const SearchResult = (props: SearchResultProps) => {
     <div id="container" className="mt-6 flex flex-col">
       <div id="word" className="flex flex-row justify-between">
         <div>
-          <h1 className="font-bold text-[32px]">{word}</h1>
+          <h1 className="font-bold text-[32px] md:text-[64px]">{word}</h1>
           <p className="text-primary text-md">{phonetic?.text}</p>
         </div>
         <PlayButton src={phonetic?.audio} />
@@ -44,7 +44,7 @@ const SearchResult = (props: SearchResultProps) => {
 
             {definitions.map((definition, idx) => {
               return (
-                <div key={idx}>
+                <div key={idx} className="text-[15px] md:text-lg">
                   <ul className="list-disc marker:text-primary text-[15px] list-inside leading-6">
                     <li className="mb-3" key={idx}>
                       {definition.definition}
@@ -60,44 +60,8 @@ const SearchResult = (props: SearchResultProps) => {
               );
             })}
 
-            {synonyms.length > 0 && (
-              <div className="flex flex-row mb-3">
-                <p className="text-accent-500 mr-6">Synonyms</p>
-
-                <div className="flex flex-row gap-2 flex-wrap">
-                  {synonyms.map((synonym, idx) => {
-                    return (
-                      <button
-                        onClick={() => setWord(synonym)}
-                        key={idx}
-                        className="font-semibold text-primary hover:underline cursor-pointer"
-                      >
-                        {synonym}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-            {antonyms.length > 0 && (
-              <div className="flex flex-row">
-                <p className="text-accent-500 mr-6">Antonyms</p>
-
-                <div className="flex flex-row gap-2 flex-wrap">
-                  {antonyms.map((antonyms, idx) => {
-                    return (
-                      <button
-                        onClick={() => setWord(antonyms)}
-                        key={idx}
-                        className="font-semibold text-primary hover:underline cursor-pointer"
-                      >
-                        {antonyms}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
+            <RelatedWords words={synonyms} setWord={setWord} />
+            <RelatedWords words={antonyms} setWord={setWord} />
           </div>
         );
       })}
