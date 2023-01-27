@@ -3,13 +3,14 @@ import { Dispatch, SetStateAction } from 'react';
 interface RelatedWordsProps {
   words?: string[];
   setWord: Dispatch<SetStateAction<string>>;
+  type: string;
 }
 
-const RelatedWords = ({ words, setWord }: RelatedWordsProps) => {
+const RelatedWords = ({ words, setWord, type }: RelatedWordsProps) => {
   if (!words?.length) return null;
   return (
-    <div className="flex flex-row">
-      <p className="text-accent-500 mr-6">Antonyms</p>
+    <div className="flex flex-row text-[16px] md:text-[20px]">
+      <p className="text-accent-500 mr-6 ">{type}</p>
 
       <div className="flex flex-row gap-2 flex-wrap">
         {words.map((word, idx) => {

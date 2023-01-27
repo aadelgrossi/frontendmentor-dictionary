@@ -14,7 +14,7 @@ const SectionTitle = ({ children }: { children: ReactNode }) => {
   return (
     <div className="flex flex-row items-center gap-3">
       <span className="italic font-bold text-[16px] md:text-[20px]">{children}</span>
-      <hr className="w-full divide-zinc-800" />
+      <hr className="w-full" />
     </div>
   );
 };
@@ -26,7 +26,7 @@ const SearchResult = (props: SearchResultProps) => {
   const phonetic = phonetics.find((item) => item.audio);
 
   return (
-    <div id="container" className="mt-6 flex flex-col">
+    <div id="container" className="mt-6 md:mt-12 flex flex-col">
       <div id="word" className="flex flex-row justify-between">
         <div>
           <h1 className="font-bold text-[32px] md:text-[64px]">{word}</h1>
@@ -44,9 +44,9 @@ const SearchResult = (props: SearchResultProps) => {
 
             {definitions.map((definition, idx) => {
               return (
-                <div key={idx} className="text-[15px] md:text-lg">
+                <div key={idx}>
                   <ul className="list-disc marker:text-primary text-[15px] list-inside leading-6">
-                    <li className="mb-3" key={idx}>
+                    <li className="mb-3 text-[15px] md:text-lg" key={idx}>
                       {definition.definition}
                     </li>
                   </ul>
@@ -60,15 +60,18 @@ const SearchResult = (props: SearchResultProps) => {
               );
             })}
 
-            <RelatedWords words={synonyms} setWord={setWord} />
-            <RelatedWords words={antonyms} setWord={setWord} />
+            <RelatedWords words={synonyms} setWord={setWord} type="Synonyms" />
+            <RelatedWords words={antonyms} setWord={setWord} type="Antonyms" />
           </div>
         );
       })}
 
       <hr className="my-6" />
 
-      <div className="flex flex-col gap-1">
+      <div
+        className="flex flex-col gap-1 items-start
+        md:flex-row md:gap-5 md:items-center"
+      >
         <p className="underline text-gray-500">Source</p>
         {sourceUrls.map((url) => {
           return (
@@ -76,7 +79,7 @@ const SearchResult = (props: SearchResultProps) => {
               key={url}
               href={url}
               target="_blank"
-              className="flex flex-row gap-2 underline"
+              className="flex flex-row gap-2 underline text-sm"
               rel="noreferrer"
             >
               {url}

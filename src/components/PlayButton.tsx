@@ -19,7 +19,8 @@ const PlayButton = (props: PlayButtonProps) => {
       >
         <Play
           className="[&>g]:hover:fill-white [&>g>circle]:hover:opacity-100
-            [&>g]:transition-all [&>g]:ease-in-out [&>g]:duration-200"
+            [&>g]:transition-all [&>g]:ease-in-out [&>g]:duration-200
+            scale-[0.64] md:scale-100"
         />
       </button>
     </>
