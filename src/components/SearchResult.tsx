@@ -13,7 +13,7 @@ interface SearchResultProps {
 const SectionTitle = ({ children }: { children: ReactNode }) => {
   return (
     <div className="flex flex-row items-center gap-3">
-      <span className="italic font-bold text-[16px] md:text-[20px]">{children}</span>
+      <span className="italic font-bold text-[16px] md:text-[24px]">{children}</span>
       <hr className="w-full" />
     </div>
   );
@@ -55,7 +55,10 @@ const SearchResult = (props: SearchResultProps) => {
             {definitions.map((definition, idx) => {
               if (!definition.example) return;
               return (
-                <p key={idx} className="ml-4 mt-[13px] text-accent-500 md:text-[18px]">
+                <p
+                  key={idx}
+                  className="ml-[46px] mt-[13px] text-accent-500 md:text-[18px]"
+                >
                   &quot;{definition.example}&quot;
                 </p>
               );
