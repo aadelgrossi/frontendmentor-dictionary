@@ -10,7 +10,7 @@ import useUserPreferenceStore from './store';
 const App = () => {
   const font = useUserPreferenceStore((state) => state.font);
 
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState('keyboard');
   const [word, setWord] = useState(inputValue);
 
   const { data, error, isError, isIdle } = useDictionarySearch(word);
@@ -27,7 +27,7 @@ const App = () => {
       bg-white text-text-200
       dark:bg-black dark:text-gray-300"
     >
-      <div className="max-w-3xl px-6 mt-10 w-full">
+      <div className="max-w-[737px] px-6 md:px-0 mt-[58px] w-full">
         <Header />
         <div className={`font-${font}`}>
           <SearchInput
