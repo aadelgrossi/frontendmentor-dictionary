@@ -30,7 +30,7 @@ const SearchResult = (props: SearchResultProps) => {
       <div id="word" className="flex flex-row justify-between">
         <div>
           <h1 className="font-bold text-[32px] md:text-[64px]">{word}</h1>
-          <p className="text-primary text-md">{phonetic?.text}</p>
+          <p className="text-primary text-md md:text-2xl">{phonetic?.text}</p>
         </div>
         <PlayButton src={phonetic?.audio} />
       </div>
@@ -40,27 +40,33 @@ const SearchResult = (props: SearchResultProps) => {
         return (
           <div id={`meaning-${partOfSpeech}`} className="mt-8" key={partOfSpeech}>
             <SectionTitle>{meaning.partOfSpeech}</SectionTitle>
-            <p className="text-accent-500 mt-6 mb-4">Meaning</p>
+            <p className="text-accent-500 mt-6 mb-4 md:text-xl">Meaning</p>
+
+            <ul className="list-disc marker:text-primary text-[15px] list-inside leading-6 last:mb-0">
+              {definitions.map((definition, idx) => {
+                return (
+                  <li className="ml-[22px] mb-3 text-[15px] md:text-lg" key={idx}>
+                    {definition.definition}
+                  </li>
+                );
+              })}
+            </ul>
 
             {definitions.map((definition, idx) => {
+              if (!definition.example) return;
               return (
-                <div key={idx}>
-                  <ul className="list-disc marker:text-primary text-[15px] list-inside leading-6">
-                    <li className="mb-3 text-[15px] md:text-lg" key={idx}>
-                      {definition.definition}
-                    </li>
-                  </ul>
-
-                  {definition.example && (
-                    <p className="ml-4 -mt-2 mb-3 text-accent-500">
-                      &quot;{definition.example}&quot;
-                    </p>
-                  )}
-                </div>
+                <p key={idx} className="ml-4 mt-[13px] text-accent-500 md:text-[18px]">
+                  &quot;{definition.example}&quot;
+                </p>
               );
             })}
 
-            <RelatedWords words={synonyms} setWord={setWord} type="Synonyms" />
+            <RelatedWords
+              className="mt-16"
+              words={synonyms}
+              setWord={setWord}
+              type="Synonyms"
+            />
             <RelatedWords words={antonyms} setWord={setWord} type="Antonyms" />
           </div>
         );

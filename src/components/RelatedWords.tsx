@@ -4,12 +4,13 @@ interface RelatedWordsProps {
   words?: string[];
   setWord: Dispatch<SetStateAction<string>>;
   type: string;
+  className?: string;
 }
 
-const RelatedWords = ({ words, setWord, type }: RelatedWordsProps) => {
+const RelatedWords = ({ words, setWord, type, className }: RelatedWordsProps) => {
   if (!words?.length) return null;
   return (
-    <div className="flex flex-row text-[16px] md:text-[20px]">
+    <div className={`flex flex-row text-[16px] md:text-[20px] ${className}`}>
       <p className="text-accent-500 mr-6 ">{type}</p>
 
       <div className="flex flex-row gap-2 flex-wrap">

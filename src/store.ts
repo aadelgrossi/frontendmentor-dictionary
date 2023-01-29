@@ -16,7 +16,7 @@ interface UserPreferenceStore extends UserPreferenceState {
 
 const persistedStore = persist<UserPreferenceStore>(
   (set) => ({
-    font: 'sans',
+    font: 'serif',
     theme: 'light',
     setFont(font) {
       set({ font });
