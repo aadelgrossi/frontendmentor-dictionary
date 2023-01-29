@@ -30,7 +30,7 @@ const SearchResult = (props: SearchResultProps) => {
       <div id="word" className="flex flex-row justify-between">
         <div>
           <h1 className="font-bold text-[32px] md:text-[64px]">{word}</h1>
-          <p className="text-primary text-md md:text-2xl">{phonetic?.text}</p>
+          <p className="text-primary text-md md:text-2xl font-sans">{phonetic?.text}</p>
         </div>
         <PlayButton src={phonetic?.audio} />
       </div>

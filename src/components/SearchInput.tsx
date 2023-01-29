@@ -33,7 +33,7 @@ const SearchInput = (props: SearchInputProps) => {
     <form onSubmit={search} className="relative flex flex-col ">
       <input
         className={clsx({
-          'w-full rounded-xl h-12 md:h-16 py-5 px-4 text-text-200 dark:text-white placeholder:dark:text-white/25 bg-accent-200 dark:bg-text-200 font-bold text-[16px] md:text-[20px] focus:outline-none focus:ring-1 focus:ring-primary':
+          'w-full rounded-2xl h-12 md:h-16 py-[19px] px-6 text-text-200 dark:text-white placeholder:dark:text-white/25 bg-accent-200 dark:bg-text-200 font-bold text-[16px] md:text-[20px] focus:outline-none focus:ring-1 focus:ring-primary':
             true,
           'required:border required:border-error focus:ring-0': hasError,
         })}
