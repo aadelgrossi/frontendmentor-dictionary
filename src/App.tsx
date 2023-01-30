@@ -29,7 +29,7 @@ const App = () => {
     >
       <div className="max-w-[737px] px-6 md:px-0 mt-[58px] w-full">
         <Header />
-        <div className={`font-${font}`}>
+        <main className={`font-${font}`}>
           <SearchInput
             setWord={setWord}
             value={inputValue}
@@ -47,7 +47,7 @@ const App = () => {
           })}
 
           {hasError && <SearchError error={error.response?.data} />}
-        </div>
+        </main>
       </div>
     </div>
   );
