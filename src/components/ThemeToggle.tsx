@@ -25,6 +25,7 @@ const ThemeToggle = () => {
   return (
     <div className="flex flex-row items-center gap-5">
       <Switch
+        title="toggle-theme"
         checked={checked}
         onChange={onChange}
         className={clsx({
