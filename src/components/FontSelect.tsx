@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { Fragment } from 'react';
 
 import chevronDown from '../assets/icon-arrow-down.svg';
+import ChevronDown from '../icons/ChevronDown';
 import useUserPreferenceStore from '../store';
 
 const options = [
@@ -19,10 +20,19 @@ const FontSelect = () => {
     <Listbox value={font} onChange={setFont}>
       <div className="relative">
         <Listbox.Button className="relative cursor-pointer">
-          <div className={`flex text-[18px] flex-row gap-[18px] font-bold font-${font}`}>
-            {options.find((option) => option.value === font)?.label}
-            <img alt="chevron-down" src={chevronDown} />
-          </div>
+          {({ open }) => (
+            <span
+              className={`flex text-[18px] items-center flex-row gap-[18px] font-bold font-${font}`}
+            >
+              {options.find((option) => option.value === font)?.label}
+              <ChevronDown
+                className={clsx({
+                  'transition-transform ease-in-out': true,
+                  '-scale-y-100': open,
+                })}
+              />
+            </span>
+          )}
         </Listbox.Button>
         <Transition
           as={Fragment}
